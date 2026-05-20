@@ -70,7 +70,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
@@ -83,7 +83,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       variants={cardVariants}
       whileHover={{
         y: -4,
-        transition: { duration: 0.3, ease: "easeOut" },
+        transition: { duration: 0.3, ease: "easeOut" as const },
       }}
       className="group relative rounded-2xl"
     >
@@ -145,7 +145,7 @@ export default function WhyUsSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
           className="mb-16 text-center sm:mb-20"
         >
           <h2

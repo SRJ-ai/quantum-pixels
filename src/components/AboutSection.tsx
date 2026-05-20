@@ -48,7 +48,7 @@ export default function AboutSection() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: "easeOut" as const }}
           className="text-center"
         >
           <h2
@@ -71,7 +71,7 @@ export default function AboutSection() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" as const }}
           className="mx-auto mt-6 max-w-3xl text-center text-lg leading-relaxed"
           style={{ color: "#94A3B8", fontFamily: "var(--font-body)" }}
         >
@@ -94,7 +94,7 @@ export default function AboutSection() {
                   transition={{
                     duration: 0.5,
                     delay: 0.15 * i,
-                    ease: "easeOut",
+                    ease: "easeOut" as const,
                   }}
                   className="relative flex items-start gap-4 pb-10 last:pb-0"
                 >
@@ -106,7 +106,7 @@ export default function AboutSection() {
                       transition={{
                         duration: 0.5,
                         delay: 0.15 * i + 0.3,
-                        ease: "easeOut",
+                        ease: "easeOut" as const,
                       }}
                       className="absolute left-[9px] top-[24px] h-[calc(100%-14px)] w-px origin-top"
                       style={{
@@ -181,7 +181,7 @@ export default function AboutSection() {
                 transition={{
                   duration: 0.5,
                   delay: 0.12 * i,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                 }}
                 whileHover={{
                   scale: 1.05,

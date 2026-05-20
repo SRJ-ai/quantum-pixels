@@ -75,7 +75,7 @@ const headingVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 
@@ -85,7 +85,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 
@@ -118,7 +118,7 @@ export default function ServicesSection() {
       >
         {/* ── Header ── */}
         <motion.div variants={headingVariants} className="text-center mb-16 md:mb-20">
-          <p className="mb-3 text-sm font-medium tracking-[0.25em] uppercase text-[#00FFB2]/80">
+          <p className="mb-3 text-sm font-medium tracking-widest uppercase text-[#00FFB2]/80">
             Our Services
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-5">
