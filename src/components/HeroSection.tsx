@@ -158,66 +158,34 @@ export default function HeroSection() {
       className="relative min-h-screen w-full overflow-hidden"
       style={{ background: "#050816" }}
     >
-      {/* ── GRID BACKGROUND ───────────────────────────── */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 grid-bg"
-        style={{ y: bgY }}
-      />
+      {/* ── FULLSCREEN VIDEO BACKGROUND ───────────────── */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover z-0"
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+          type="video/mp4"
+        />
+      </video>
 
-      {/* ── RADIAL GRADIENT OVERLAY ───────────────────── */}
+      {/* ── VIDEO DARK OVERLAY ────────────────────────── */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[#050816]/60" />
+
+      {/* ── RADIAL ACCENT OVERLAY ─────────────────────── */}
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-[2]"
         style={{
           background:
             "radial-gradient(ellipse 70% 50% at 50% 45%, rgba(0,255,178,0.06) 0%, rgba(0,229,255,0.03) 40%, transparent 70%)",
         }}
       />
 
-      {/* secondary radial for depth */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 60% at 75% 40%, rgba(139,92,246,0.04) 0%, transparent 60%)",
-        }}
-      />
-
-      {/* ── FLOATING BACKGROUND PARTICLES ─────────────── */}
-      <div className="pointer-events-none absolute inset-0">
-        {bgParticles.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute rounded-full"
-            style={{
-              left: p.x,
-              top: p.y,
-              width: p.size,
-              height: p.size,
-              background:
-                p.id % 3 === 0
-                  ? "#00FFB2"
-                  : p.id % 3 === 1
-                    ? "#00E5FF"
-                    : "#8B5CF6",
-              opacity: p.opacity,
-            }}
-            animate={{
-              y: [0, -20, 0, 15, 0],
-              x: [0, 10, -5, 8, 0],
-              opacity: [p.opacity, p.opacity * 1.8, p.opacity, p.opacity * 0.6, p.opacity],
-            }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              ease: "easeInOut" as const,
-              delay: p.delay,
-            }}
-          />
-        ))}
-      </div>
-
       {/* ── NOISE OVERLAY ─────────────────────────────── */}
-      <div className="noise-overlay pointer-events-none absolute inset-0" />
+      <div className="noise-overlay pointer-events-none absolute inset-0 z-[3]" />
 
       {/* ══════════════════════════════════════════════════
           NAVIGATION BAR
@@ -228,8 +196,8 @@ export default function HeroSection() {
         variants={navContainerVariants}
         className="fixed left-0 right-0 top-0 z-50"
       >
-        {/* glass background */}
-        <div className="absolute inset-0 border-b border-white/[0.06] bg-[#050816]/70 backdrop-blur-xl" />
+        {/* liquid-glass background */}
+        <div className="liquid-glass absolute inset-0 border-b border-white/[0.06] bg-[#050816]/50 backdrop-blur-xl" />
 
         <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           {/* Logo */}
@@ -281,14 +249,8 @@ export default function HeroSection() {
           <motion.a
             href="#contact"
             variants={navItemVariants}
-            className="group hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-black transition-all duration-300 md:flex"
-            style={{
-              background: "linear-gradient(135deg, #00FFB2, #00E5FF)",
-            }}
-            whileHover={{
-              scale: 1.04,
-              boxShadow: "0 0 28px rgba(0,255,178,0.35)",
-            }}
+            className="liquid-glass group hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 md:flex"
+            whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
             Get Started
@@ -310,7 +272,7 @@ export default function HeroSection() {
       {/* ══════════════════════════════════════════════════
           MAIN HERO CONTENT
           ══════════════════════════════════════════════════ */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-24 lg:flex-row lg:items-center lg:gap-12 lg:px-8">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-24 lg:flex-row lg:items-center lg:gap-12 lg:px-8" style={{ zIndex: 10 }}>
         {/* ── LEFT SIDE ─────────────────────────────────── */}
         <div className="flex flex-1 flex-col justify-center lg:max-w-2xl">
           {/* badge */}
@@ -334,7 +296,8 @@ export default function HeroSection() {
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="mb-6 font-[family-name:var(--font-heading)] text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+            className="mb-6 text-4xl font-normal leading-[0.95] sm:text-5xl md:text-6xl lg:text-7xl"
+            style={{ fontFamily: "var(--font-display), 'Instrument Serif', serif", letterSpacing: "-0.04em" }}
           >
             {HEADLINE_WORDS.map((word, i) => (
               <motion.span
@@ -382,19 +345,10 @@ export default function HeroSection() {
             {/* Primary CTA */}
             <motion.a
               href="#services"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-3.5 text-sm font-semibold text-black sm:text-base"
-              style={{
-                background: "linear-gradient(135deg, #00FFB2, #00E5FF)",
-              }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow:
-                  "0 0 40px rgba(0,255,178,0.4), 0 0 80px rgba(0,255,178,0.15)",
-              }}
+              className="liquid-glass group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-3.5 text-sm font-semibold text-white sm:text-base"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
-              {/* shine sweep */}
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative">Explore Platform</span>
               <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </motion.a>
